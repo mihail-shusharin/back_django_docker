@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django.forms",
     # third party
     "rest_framework",
+    "postman_task",
     # apps
 ]
 
@@ -66,6 +67,7 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -77,6 +79,7 @@ DATABASES = {
         "CONN_MAX_AGE": 600,
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -96,9 +99,10 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files
-STATIC_URL = "/s/"
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+TEMPLATES_ROOT = os.path.join(BASE_DIR, 'templates')
 
 # HTTP
 USE_X_FORWARDED_HOST = True
@@ -106,7 +110,7 @@ USE_X_FORWARDED_PORT = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Media
-MEDIA_URL = "/m/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = 0o755
 FILE_UPLOAD_PERMISSIONS = 0o644
@@ -116,9 +120,7 @@ def show_toolbar_callback(_):
     return DEBUG
 DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": "config.settings.show_toolbar_callback"}
 
-# Cache
-if not TESTING:
-    CACHES = {"default": {"BACKEND": "redis_cache.RedisCache", "LOCATION": "redis:6379"}}
+
 
 SITE_ID = 1
 

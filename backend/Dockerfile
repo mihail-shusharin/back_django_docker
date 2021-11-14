@@ -12,6 +12,8 @@ RUN apk add --no-cache --virtual build-deps \
     postgresql-dev `# для psycopg2` \
     libjpeg-turbo-dev zlib-dev libffi-dev cairo-dev libwebp-dev `# для pillow`
 # Зависимости необходимые для работы
+COPY ./requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 RUN apk add --no-cache \
     git `# для установки зависимостей из git` \
     libpq `# для psycopg2` \
@@ -23,3 +25,4 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction --no-ansi
 RUN apk del --no-cache build-deps
 COPY / /app/
+

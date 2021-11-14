@@ -9,7 +9,7 @@ services:
       args:
         POETRY_PARAMS: "--no-dev"
     entrypoint: sh wait-for db:5432 -- ./entrypoint.production.sh
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
     environment:
       - DEBUG=False
     depends_on:
