@@ -10,7 +10,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.files.base import ContentFile
-from postman_task.forms import ImageForm
 from config import settings
 import requests
 from PIL import Image as pil_img
